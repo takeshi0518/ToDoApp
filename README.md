@@ -25,6 +25,8 @@
 
 ## デザインカンプ
 
+![ToDoAppのデザイン](./client/public/docs/ToDoApp-design.png)
+
 ## API 仕様
 
 ## ローカル環境でのセットアップ手順
