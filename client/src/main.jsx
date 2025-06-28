@@ -2,13 +2,10 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import './tailwind.css';
-import App from './App.jsx';
-import { Container } from './components/Container.jsx';
+import { Todo } from './components/Todo.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Container>
-      <App />
-    </Container>
+    <Todo />
   </StrictMode>
 );
