@@ -1,5 +1,5 @@
 const TextColor = {
-  base: 'text-base',
+  base: 'text-base-color',
 };
 
 export { TextColor };
