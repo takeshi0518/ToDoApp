@@ -1,5 +1,9 @@
 const TextColor = {
-  base: 'text-base-color',
+  baseText: 'text-base-text-color',
 };
 
-export { TextColor };
+const BgColor = {
+  gray: 'bg-gray',
+};
+
+export { TextColor, BgColor };
