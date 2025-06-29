@@ -1,7 +1,7 @@
-import { buttons } from '../styles/buttonStyles';
+import { buttons } from '../styles/variants/buttonStyles';
 
-const Button = ({ text, variant = 'submit' }) => {
-  return <button className={buttons[variant]}>{text}</button>;
+const Button = ({ text, variant, margin }) => {
+  return <button className={`${buttons[variant]} ${margin}`}>{text}</button>;
 };
 
 export { Button };

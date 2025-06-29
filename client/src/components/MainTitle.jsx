@@ -1,4 +1,4 @@
-import { mainTitle } from '../styles/title';
+import { mainTitle } from '../styles/variants/title';
 
 const MainTitle = ({ text, variant = 'large' }) => {
   return <h1 className={mainTitle[variant]}>{text}</h1>;
