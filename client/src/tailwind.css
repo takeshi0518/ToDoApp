@@ -1,0 +1,5 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-base-text-color: #343434;
+}

@@ -6,12 +6,7 @@ import { TodoForm } from './TodoForm';
 function Todo() {
   return (
     <Container>
-      <MainTitle
-        text="ToDoApp"
-        className="sm:text-5xl md:text-6xl"
-        fontColor={TextColor.baseText}
-      />
-      <TodoForm />
+
     </Container>
   );
 }
