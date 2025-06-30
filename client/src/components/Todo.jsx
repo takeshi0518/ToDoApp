@@ -1,14 +1,14 @@
 import { MainTitle } from './MainTitle';
-import { Container } from './Container';
+import { Container } from './layout/Container';
 import { TodoForm } from './TodoForm';
-import { SubTitle } from './SubTitle';
+import { CardList } from './ToDoCard/CardList';
 
 function Todo() {
   return (
     <Container>
       <MainTitle text="ToDoApp" variant="large" />
       <TodoForm />
-      <SubTitle text="ToDosList" variant="medium" />
+      <CardList />
     </Container>
   );
 }
