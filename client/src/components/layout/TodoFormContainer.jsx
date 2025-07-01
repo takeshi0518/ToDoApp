@@ -1,8 +1,8 @@
 const TodoFormContainer = ({ children }) => {
   return (
-    <section className="flex justify-center mb-20">
-      <div className="w-[80%] flex items-center justify-center">{children}</div>
-    </section>
+    <form className="mb-10 sm:mb-20 md:mb-24 lg:mb-28 flex flex-col sm:flex sm:flex-row sm:items-stretch sm:justify-center">
+      {children}
+    </form>
   );
 };
 

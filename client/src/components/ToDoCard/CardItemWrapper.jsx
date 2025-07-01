@@ -1,5 +1,9 @@
 const CardItemWrapper = ({ children }) => {
-  return <ul className="grid grid-cols-3 gap-35 px-10">{children}</ul>;
+  return (
+    <ul className="p-8 grid grid-cols-1 gap-8 sm:grid sm:grid-cols-2 lg:grid lg:grid-cols-4">
+      {children}
+    </ul>
+  );
 };
 
 export { CardItemWrapper };

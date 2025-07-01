@@ -1,7 +1,7 @@
 import { Button } from '../Button';
 import { CardDate } from './CardDate';
 import { CardTask } from './CardTask';
-import { card } from '../../styles/variants/card';
+import { card } from '../../styles/variants/cardStyles';
 
 const CardItem = ({ variant }) => {
   const styles = card[variant];
