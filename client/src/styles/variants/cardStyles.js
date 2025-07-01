@@ -4,7 +4,7 @@ export const card = {
       'p-8 sm:p-10 border-2 border-base-line-color shadow-xl aspect-square flex flex-col justify-between',
     date: {
       layout: 'flex',
-      registration: 'text-xs',
+      registration: 'text-xs mr-5',
       time: 'text-xs',
     },
     task: {
