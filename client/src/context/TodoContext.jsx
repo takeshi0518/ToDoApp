@@ -10,6 +10,8 @@ const todoReducer = (todos, action) => {
   switch (action.type) {
     case 'get':
       return action.payload;
+    case 'post':
+      return [...todos, action.payload];
     default:
       return todos;
   }
