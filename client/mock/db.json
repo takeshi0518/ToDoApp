@@ -1,24 +1,3 @@
 {
-  "todos": [
-    {
-      "id": "bIUNkgp27Sm-S0b826iWw",
-      "date": "2025/07/02",
-      "content": "買い物に行く"
-    },
-    {
-      "id": "tSufOmUuBBBWedCZ07mf1",
-      "date": "2025/07/02",
-      "content": "宿題をする"
-    },
-    {
-      "id": "Ov2pmglG71ffVSQmCWAXM",
-      "date": "2025/07/02",
-      "content": "デート"
-    },
-    {
-      "id": "KDjuPSTgVFcNsjxIFDyhk",
-      "date": "2025/07/02",
-      "content": "筋トレ"
-    }
-  ]
+  "todos": []
 }

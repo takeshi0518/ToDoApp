@@ -54,7 +54,7 @@ const TodoForm = () => {
           onChange={(e) => setContent(e.target.value)}
           value={content}
         />
-        <Button text="送信" variant="grayLarge" />
+        <Button text="送信" variant="grayLarge" type="submit" />
       </TodoFormContainer>
     </section>
   );

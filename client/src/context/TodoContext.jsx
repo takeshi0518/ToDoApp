@@ -12,6 +12,8 @@ const todoReducer = (todos, action) => {
       return action.payload;
     case 'post':
       return [...todos, action.payload];
+    case 'delete':
+      return todos.filter((_todo) => _todo.id !== action.paylaod);
     default:
       return todos;
   }
