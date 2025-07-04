@@ -7,7 +7,7 @@ import { TodoProvider } from '../context/TodoContext';
 function Todo() {
   return (
     <Container>
-      <MainTitle text="ToDoApp" variant="large" />
+      <MainTitle text="ToDoApp" variant="mainTitle" />
       <TodoProvider>
         <TodoForm />
         <CardList />

@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react';
 import { useTodoDispatchContext } from '../context/TodoContext';
 import { Button } from './Button';
 import { Input } from './Input';
-import { TodoFormContainer } from './layout/TodoFormContainer';
 
 const URL = 'http://localhost:3001/todos';
 
@@ -48,14 +47,17 @@ const TodoForm = () => {
           空白です。ToDoを入力してください
         </p>
       )}
-      <TodoFormContainer onSubmit={handleSubmit}>
+      <form
+        onSubmit={handleSubmit}
+        className="mb-10 sm:mb-20 md:mb-24 lg:mb-28 flex flex-col sm:flex sm:flex-row sm:items-stretch sm:justify-center"
+      >
         <Input
           variant="large"
           onChange={(e) => setContent(e.target.value)}
           value={content}
         />
         <Button text="送信" variant="grayLarge" type="submit" />
-      </TodoFormContainer>
+      </form>
     </section>
   );
 };

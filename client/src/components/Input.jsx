@@ -1,9 +1,14 @@
-import { inputs } from '../styles/variants/inputStyles';
+import { inputs } from '../styles/uiStyles/inputStyles';
 
-const Input = ({ variant, onChange }) => {
+const Input = ({ variant, onChange, value, defaultValue }) => {
   return (
     <>
       <input
+        {...(value !== undefined
+          ? { value }
+          : defaultValue !== undefined
+          ? { defaultValue }
+          : {})}
         type="text"
         className={inputs[variant]}
         onChange={onChange}

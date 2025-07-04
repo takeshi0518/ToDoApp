@@ -1,5 +1,11 @@
 import axios from 'axios';
-import { createContext, useContext, useReducer, useEffect } from 'react';
+import {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  useState,
+} from 'react';
 
 const URL = 'http://localhost:3001/todos';
 
@@ -13,25 +19,31 @@ const todoReducer = (todos, action) => {
     case 'post':
       return [...todos, action.payload];
     case 'delete':
-      return todos.filter((_todo) => _todo.id !== action.paylaod);
+      return todos.filter((_todo) => _todo.id !== action.payload);
+    case 'patch':
+      return todos.map((_todo) => {
+        return _todo.id === action.payload.id ? action.payload : _todo;
+      });
     default:
       return todos;
   }
 };
 
 const TodoProvider = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [todos, dispatch] = useReducer(todoReducer, []);
 
   useEffect(() => {
     const fetchTodos = async () => {
       const res = await axios.get(URL);
       dispatch({ type: 'get', payload: res.data });
+      setIsLoading(false);
     };
     fetchTodos();
   }, []);
 
   return (
-    <TodoContext.Provider value={todos}>
+    <TodoContext.Provider value={[todos, isLoading]}>
       <TodoDispatchContext.Provider value={dispatch}>
         {children}
       </TodoDispatchContext.Provider>

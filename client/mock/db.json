@@ -1,3 +1,19 @@
 {
-  "todos": []
+  "todos": [
+    {
+      "id": "dnJL-ucSRZY5KL-I77Pk_",
+      "date": "2025/07/05",
+      "content": "Reactの勉強"
+    },
+    {
+      "id": "I75vAGCnkz4a9A9Hk7flZ",
+      "date": "2025/07/05",
+      "content": "宿題"
+    },
+    {
+      "id": "AiVZOCz1t5YQPzBrkcwL4",
+      "date": "2025/07/05",
+      "content": "筋トレ"
+    }
+  ]
 }
