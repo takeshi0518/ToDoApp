@@ -1,10 +1,10 @@
-const CardDate = ({ styles }) => {
+const CardDate = ({ styles, date }) => {
   const { layout, registration, time } = styles;
   return (
     <div className={layout}>
       <p className={registration}>Registration date</p>
-      <time dateTime="2025/06/22" className={time}>
-        2025/06/22
+      <time dateTime={date} className={time}>
+        {date}
       </time>
     </div>
   );
