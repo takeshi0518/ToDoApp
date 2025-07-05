@@ -19,7 +19,7 @@ const ModalPortal = ({ children }) => {
 
 const CardList = () => {
   const dispatch = useTodoDispatchContext();
-  const [todos, isLoading] = useTodoContext();
+  const { todos, isLoading } = useTodoContext();
   const [isEdit, setEdit] = useState(false);
   const [targetTodo, setTargetTodo] = useState(null);
   const [editContent, setEditContent] = useState('');

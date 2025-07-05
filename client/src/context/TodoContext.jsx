@@ -43,7 +43,7 @@ const TodoProvider = ({ children }) => {
   }, []);
 
   return (
-    <TodoContext.Provider value={[todos, isLoading]}>
+    <TodoContext.Provider value={{ todos, isLoading }}>
       <TodoDispatchContext.Provider value={dispatch}>
         {children}
       </TodoDispatchContext.Provider>

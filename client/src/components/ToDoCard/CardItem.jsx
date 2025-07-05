@@ -12,8 +12,8 @@ const CardItem = ({ variant, todo, complete, edit }) => {
       <CardDate styles={styles.date} date={date} />
       <CardTask styles={styles.task} content={content} />
       <div className="flex justify-between">
-        <Button text="編集" variant="blue" onClick={edit} />
-        <Button text="完了" variant="green" onClick={complete} />
+        <Button text="編集" variant="blue" onClick={edit} type="button" />
+        <Button text="完了" variant="green" onClick={complete} type="button" />
       </div>
     </li>
   );
