@@ -1,9 +1,11 @@
+import { memo } from 'react';
+
 import { Button } from '../Button';
 import { CardDate } from './CardDate';
 import { CardTask } from './CardTask';
 import { card } from '../../styles/uiStyles/cardStyles';
 
-const CardItem = ({ variant, todo, complete, edit }) => {
+const CardItem = memo(({ variant, todo, complete, edit }) => {
   const styles = card[variant];
   const { content, date } = todo;
 
@@ -17,6 +19,6 @@ const CardItem = ({ variant, todo, complete, edit }) => {
       </div>
     </li>
   );
-};
+});
 
 export { CardItem };
