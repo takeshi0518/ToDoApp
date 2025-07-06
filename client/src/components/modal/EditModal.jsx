@@ -1,7 +1,7 @@
-import { MainTitle } from './MainTitle';
-import { Button } from './Button';
-import { Input } from './Input';
-import { modal } from '../styles/uiStyles/modalStyles';
+import { MainTitle } from '../MainTitle';
+import { Button } from '../Button';
+import { Input } from '../Input';
+import { modal } from '../../styles/uiStyles/modalStyles';
 
 const EditModal = ({ variant, onChange, handleEdit, closeEditModal, todo }) => {
   const { overlay, card } = modal[variant];
