@@ -13,4 +13,8 @@ app.use(express.json());
 
 app.use('/api', apiRoutes);
 
+app.use((req, res) => {
+  res.status(404).json({ msg: 'Page Not Found.' });
+});
+
 app.listen(PORT, () => console.log(`Server Start -> http://localhost:${PORT}`));
