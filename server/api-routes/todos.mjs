@@ -1,6 +1,7 @@
 import express from 'express';
-import { body } from 'express-validator';
 
+import { body } from 'express-validator';
+import { requestErrorHandler } from '../helpers/helper.mjs';
 import {
   registTodo,
   updateTodo,
@@ -10,12 +11,16 @@ import {
 
 const router = express.Router();
 
-router.get('/', getAllTodos);
+router.get('/', requestErrorHandler(getAllTodos));
 
-router.post('/', body('content').notEmpty(), registTodo);
+router.post('/', body('content').notEmpty(), requestErrorHandler(registTodo));
 
-router.patch('/:id', body('content').notEmpty(), updateTodo);
+router.patch(
+  '/:id',
+  body('content').notEmpty(),
+  requestErrorHandler(updateTodo)
+);
 
-router.delete('/:id', deleteTodo);
+router.delete('/:id', requestErrorHandler(deleteTodo));
 
 export default router;

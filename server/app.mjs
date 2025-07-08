@@ -17,4 +17,11 @@ app.use((req, res) => {
   res.status(404).json({ msg: 'Page Not Found.' });
 });
 
+app.use((err, req, res, next) => {
+  if (res.headersSent) {
+    return next(err);
+  }
+  res.status(500).json({ msg: '不正なエラーが発生しました' });
+});
+
 app.listen(PORT, () => console.log(`Server Start -> http://localhost:${PORT}`));
