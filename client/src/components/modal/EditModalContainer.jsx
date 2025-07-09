@@ -1,8 +1,9 @@
 import { useState, memo } from 'react';
-import dayjs from 'dayjs';
+// import dayjs from 'dayjs';
 import axios from 'axios';
 
-const URL = 'http://localhost:3001/todos';
+const URL = import.meta.env.VITE_API_URL;
+
 import { useTodoDispatchContext } from '../../context/TodoContext';
 import { ModalPortal } from './ModalPortal';
 import { EditModal } from './EditModal';
@@ -17,10 +18,10 @@ const EditModalContainer = memo(({ todo, closeEditModal }) => {
     const editTodo = {
       ...todo,
       content: editContent,
-      date: dayjs().format('YYYY/MM/DD'),
+      // date: dayjs().format('YYYY/MM/DD'),
     };
 
-    await axios.patch(`${URL}/${todo.id}`, editTodo);
+    await axios.patch(`${URL}/${todo._id}`, editTodo);
     dispatch({ type: 'patch', payload: editTodo });
     closeEditModal();
   };

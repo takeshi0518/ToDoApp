@@ -7,7 +7,7 @@ import { SubTitle } from '../SubTitle';
 import { useTodoContext } from '../../context/TodoContext';
 import { useTodoDispatchContext } from '../../context/TodoContext';
 
-const URL = 'http://localhost:3001/todos';
+const URL = import.meta.env.VITE_API_URL;
 
 const CardList = () => {
   const dispatch = useTodoDispatchContext();
@@ -45,14 +45,14 @@ const CardList = () => {
             />
           )}
           {todos.map((todo) => {
-            const onComplete = () => handleComplete(todo.id);
+            const onComplete = () => handleComplete(todo._id);
             const onEdit = () => openEditModal(todo);
 
             return (
               <CardItem
                 variant="default"
                 todo={todo}
-                key={todo.id}
+                key={todo._id}
                 complete={onComplete}
                 edit={onEdit}
               />

@@ -7,11 +7,11 @@ import { card } from '../../styles/uiStyles/cardStyles';
 
 const CardItem = memo(({ variant, todo, complete, edit }) => {
   const styles = card[variant];
-  const { content, date } = todo;
+  const { content, createdAt } = todo;
 
   return (
     <li className={styles.container}>
-      <CardDate styles={styles.date} date={date} />
+      <CardDate styles={styles.date} date={createdAt} />
       <CardTask styles={styles.task} content={content} />
       <div className="flex justify-between">
         <Button text="編集" variant="blue" onClick={edit} type="button" />
