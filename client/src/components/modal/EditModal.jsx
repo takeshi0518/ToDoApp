@@ -3,7 +3,14 @@ import { Button } from '../Button';
 import { Input } from '../Input';
 import { modal } from '../../styles/uiStyles/modalStyles';
 
-const EditModal = ({ variant, onChange, handleEdit, closeEditModal, todo }) => {
+const EditModal = ({
+  variant,
+  onChange,
+  handleEdit,
+  closeEditModal,
+  todo,
+  ref,
+}) => {
   const { overlay, card } = modal[variant];
 
   return (
@@ -15,6 +22,7 @@ const EditModal = ({ variant, onChange, handleEdit, closeEditModal, todo }) => {
           variant="middle"
           type="text"
           defaultValue={todo.content}
+          ref={ref}
         />
         <div className="flex justify-between w-full">
           <Button text="キャンセル" variant="gray" onClick={closeEditModal} />
