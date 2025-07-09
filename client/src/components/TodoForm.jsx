@@ -1,5 +1,5 @@
-import { nanoid } from 'nanoid';
-import dayjs from 'dayjs';
+// import { nanoid } from 'nanoid';
+// import dayjs from 'dayjs';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
@@ -7,7 +7,7 @@ import { useTodoDispatchContext } from '../context/TodoContext';
 import { Button } from './Button';
 import { Input } from './Input';
 
-const URL = 'http://localhost:3001/todos';
+const URL = import.meta.env.VITE_API_URL;
 
 const TodoForm = () => {
   const [content, setContent] = useState('');
@@ -23,8 +23,8 @@ const TodoForm = () => {
     }
 
     const newTodo = {
-      id: nanoid(),
-      date: dayjs().format('YYYY/MM/DD'),
+      // id: nanoid(),
+      // date: dayjs().format('YYYY/MM/DD'),
       content,
     };
 

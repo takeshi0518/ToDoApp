@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import {
   createContext,
   useContext,
@@ -7,7 +8,7 @@ import {
   useState,
 } from 'react';
 
-const URL = 'http://localhost:3001/todos';
+const URL = import.meta.env.VITE_API_URL;
 
 const TodoContext = createContext();
 const TodoDispatchContext = createContext();
@@ -19,10 +20,10 @@ const todoReducer = (todos, action) => {
     case 'post':
       return [...todos, action.payload];
     case 'delete':
-      return todos.filter((_todo) => _todo.id !== action.payload);
+      return todos.filter((_todo) => _todo._id !== action.payload);
     case 'patch':
       return todos.map((_todo) => {
-        return _todo.id === action.payload.id ? action.payload : _todo;
+        return _todo._id === action.payload._id ? action.payload : _todo;
       });
     default:
       return todos;
