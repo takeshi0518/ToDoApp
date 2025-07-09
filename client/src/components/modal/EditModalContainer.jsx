@@ -1,4 +1,4 @@
-import { useState, memo } from 'react';
+import { useState, memo, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 const URL = import.meta.env.VITE_API_URL;
@@ -10,6 +10,11 @@ import { EditModal } from './EditModal';
 const EditModalContainer = memo(({ todo, closeEditModal }) => {
   const dispatch = useTodoDispatchContext();
   const [editContent, setEditContent] = useState(todo.content);
+
+  const inputRef = useRef(null);
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   const handleEdit = async (e) => {
     e.preventDefault();
@@ -32,6 +37,7 @@ const EditModalContainer = memo(({ todo, closeEditModal }) => {
         closeEditModal={closeEditModal}
         onChange={setEditContent}
         handleEdit={handleEdit}
+        ref={inputRef}
       />
     </ModalPortal>
   );

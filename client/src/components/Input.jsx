@@ -1,6 +1,6 @@
 import { inputs } from '../styles/uiStyles/inputStyles';
 
-const Input = ({ variant, onChange, value, defaultValue }) => {
+const Input = ({ variant, onChange, value, defaultValue, ref }) => {
   return (
     <>
       <input
@@ -12,6 +12,7 @@ const Input = ({ variant, onChange, value, defaultValue }) => {
         type="text"
         className={inputs[variant]}
         onChange={onChange}
+        ref={ref}
         placeholder="ToDoを入力してください"
       />
     </>
