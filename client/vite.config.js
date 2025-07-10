@@ -10,4 +10,9 @@ export default defineConfig({
       ignored: ['**/mock/db.json'],
     },
   },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/vitest-setup.js',
+  },
 });
