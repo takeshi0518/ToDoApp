@@ -1,6 +1,6 @@
 import { inputs } from '../styles/uiStyles/inputStyles';
 
-const Input = ({ variant, onChange, value, defaultValue, ref }) => {
+const Input = ({ variant, onChange, value, defaultValue, ref, type }) => {
   return (
     <>
       <input
@@ -9,7 +9,7 @@ const Input = ({ variant, onChange, value, defaultValue, ref }) => {
           : defaultValue !== undefined
           ? { defaultValue }
           : {})}
-        type="text"
+        type={type}
         className={inputs[variant]}
         onChange={onChange}
         ref={ref}
