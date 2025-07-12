@@ -55,4 +55,4 @@ const TodoProvider = ({ children }) => {
 const useTodoContext = () => useContext(TodoContext);
 const useTodoDispatchContext = () => useContext(TodoDispatchContext);
 
-export { TodoProvider, useTodoContext, useTodoDispatchContext };
+export { TodoProvider, useTodoContext, useTodoDispatchContext, todoReducer };
