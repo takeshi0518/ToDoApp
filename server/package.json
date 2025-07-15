@@ -7,9 +7,6 @@
     "start": "node app.mjs",
     "build-client": "cd ../client && npm install && npm run build && cp -r dist ../server/public"
   },
-  "engines": {
-    "node": "18.x"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
