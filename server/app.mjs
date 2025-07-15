@@ -18,7 +18,8 @@ const app = express();
 
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    // origin: 'http://localhost:5173',
+    origin: 'https://todoapp-apl5.onrender.com',
   })
 );
 app.use(express.json());
