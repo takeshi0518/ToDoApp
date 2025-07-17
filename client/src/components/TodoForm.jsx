@@ -1,5 +1,3 @@
-// import { nanoid } from 'nanoid';
-// import dayjs from 'dayjs';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
@@ -23,8 +21,6 @@ const TodoForm = () => {
     }
 
     const newTodo = {
-      // id: nanoid(),
-      // date: dayjs().format('YYYY/MM/DD'),
       content,
     };
 
