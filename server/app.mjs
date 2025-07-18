@@ -28,7 +28,12 @@ app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
 app.use('/api', apiRoutes);
 
+app.use('/api', (req, res) => {
+  res.status(404).json({ msg: 'API endpoint not found' });
+});
+
 app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api')) return next();
   if (path.extname(req.path)) return next();
   const indexPath = path.resolve(__dirname, '../client/dist/index.html');
   res.sendFile(indexPath);
