@@ -28,7 +28,8 @@ app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
 app.use('/api', apiRoutes);
 
-app.get('*', (req, res) => {
+app.get('*', (req, res, next) => {
+  if (path.extname(req.path)) return next();
   const indexPath = path.resolve(__dirname, '../client/dist/index.html');
   res.sendFile(indexPath);
 });
