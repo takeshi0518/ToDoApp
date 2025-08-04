@@ -79,7 +79,7 @@ $npm run build
 $cd ../server
 
 .env ファイルを作成し、以下を追加してください
-MONGO_URI=your_mongo_connection_string
+MONGO_URI=your_mongo_connection_string  
 PORT=8080
 
 $npm install  
