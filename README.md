@@ -9,7 +9,6 @@
 - バックエンド:Node.js + Express
 - データベース:MongoDB Atlas
 - デプロイ:Render
-- その他:axios, dotenv, mongoose, express-validator など
 
 ## 主な機能
 
@@ -29,21 +28,62 @@
 
 ## API 仕様
 
+### GET `/api/todos`
+
+- 目的: 登録されている ToDo リストを取得する
+- 使い方: ブラウザやクライアントからアクセスする
+
+### POST `/api/todos`
+
+- 目的: 新しい ToDo を追加する
+- 使い方: title をリクエストボディに入れて送信する
+
+### PATCH `/api/todos/:id`
+
+- 目的: 指定した ID の ToDo を更新する
+- 使い方: title を変更して送信
+
+### DELETE `/api/todos:id`
+
+- 目的: 指定した ID の ToDo を削除する
+- 使い方: その ID に対してリクエストを送信
+
+## CI/CD
+
+このアプリは以下のタスクを GitHub Actions によって自動化しています。
+
+- ESLint による静的コード解析 `npm run lint`
+- テストの自動実行 `npm test`
+- main ブランチにマージされた際に Render に自動デプロイ
+
+詳細な設定は`.github/workflows/main.yml`に記述しています。
+
 ## ローカル環境でのセットアップ手順
 
 ### 1. リポジトリをクローン
 
-git clone https://github.com/your-username/mern-todo-app.git
+git clone https://github.com/takeshi0518/ToDoApp.git
 
-### 2. サーバーサイドの準備
+### 2. クライアントフォルダに移動してビルド
 
-$cd server $npm install
-`.env` に以下を追加: MONGO_URI=your_mongo_connection_string
+$cd client
+
+.env ファイルを作成し、以下を追加してください
+VITE_API_URL=http://localhost:8080/api/todos
+
+$npm install  
+$npm run build
+
+### 3. サーバーフォルダに移動して localhost:8080 にアクセス
+
+$cd ../server
+
+.env ファイルを作成し、以下を追加してください
+MONGO_URI=your_mongo_connection_string
 PORT=8080
 
-### 3. クライアントサイドの準備
-
-$cd client $npm install $npm run dev
+$npm install  
+$npm run start
 
 ## Git 運用メモ
 
