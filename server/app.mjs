@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import env from 'dotenv';
 import cors from 'cors';
+import session from 'express-session';
 
 import './helpers/db.mjs';
 import apiRoutes from './api-routes/index.mjs';
@@ -20,9 +21,23 @@ app.use(
   cors({
     // origin: 'http://localhost:5173',
     origin: 'https://todoapp-apl5.onrender.com',
+    credentials: true,
   })
 );
 app.use(express.json());
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || 'dev-secret-key',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === 'production',
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24,
+    },
+  })
+);
 
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
