@@ -4,4 +4,5 @@ export const titles = {
   subTitle:
     'text-base sm:text-lg md:text-xl lg:text-2xl pb-2 mb-12 sm:mb-15 md:mb-18 lg:mb-20 border-b border-base-line-color',
   modalTitle: 'text-base sm:text-lg md:text-2xl lg:text-3xl',
+  registerTitle: 'text-2xl font-bold mb-6 text-center',
 };

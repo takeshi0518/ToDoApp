@@ -52,6 +52,7 @@ const TodoForm = () => {
           onChange={(e) => setContent(e.target.value)}
           value={content}
           type="text"
+          placeholderText="Todoを入力してください"
         />
         <Button text="送信" variant="grayLarge" type="submit" />
       </form>

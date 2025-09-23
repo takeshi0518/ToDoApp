@@ -1,6 +1,14 @@
 import { inputs } from '../styles/uiStyles/inputStyles';
 
-const Input = ({ variant, onChange, value, defaultValue, ref, type }) => {
+const Input = ({
+  placeholderText,
+  variant,
+  onChange,
+  value,
+  defaultValue,
+  ref,
+  type,
+}) => {
   return (
     <>
       <input
@@ -13,7 +21,7 @@ const Input = ({ variant, onChange, value, defaultValue, ref, type }) => {
         className={inputs[variant]}
         onChange={onChange}
         ref={ref}
-        placeholder="ToDoを入力してください"
+        placeholder={placeholderText}
       />
     </>
   );
