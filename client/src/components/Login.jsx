@@ -4,16 +4,19 @@ import { Input } from './Input';
 import { SubTitle } from './SubTitle';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { SpinnerIcon } from './SpinnerIcon';
 
 export const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setIsLoading(true);
 
     try {
       await axios.post(
@@ -28,6 +31,7 @@ export const Login = () => {
       );
       navigate('/todos');
     } catch (error) {
+      setIsLoading(false);
       setError(error.response?.data?.error || 'ユーザー登録に失敗しました');
     }
   };
@@ -63,7 +67,20 @@ export const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <Button variant="login" type="submit" text="ログイン" />
+          <Button
+            variant="login"
+            type="submit"
+            text={
+              isLoading ? (
+                <div className="flex items-center justify-center">
+                  <SpinnerIcon className="animate-spin " />
+                </div>
+              ) : (
+                'ログイン'
+              )
+            }
+            disabled={isLoading}
+          />
         </form>
 
         <p className="mt-4 text-center text-gray-600">
