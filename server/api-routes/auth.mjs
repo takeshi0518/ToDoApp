@@ -4,6 +4,27 @@ import User from '../models/user.mjs';
 
 const router = express.Router();
 
+router.get('/me', async (req, res) => {
+  if (!req.session.user_id) {
+    return res.json({ user: null });
+  }
+  try {
+    const user = await User.findById(req.session.user_id);
+    if (!user) {
+      return res.json({ user: null });
+    }
+
+    res.json({
+      user: {
+        username: user.username,
+        id: user._id,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'サーバーエラー' });
+  }
+});
+
 router.post('/register', async (req, res) => {
   try {
     const { username, password } = req.body;

@@ -36,7 +36,9 @@ const TodoProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchTodos = async () => {
-      const res = await axios.get(URL);
+      const res = await axios.get(URL, {
+        withCredentials: true,
+      });
       dispatch({ type: 'get', payload: res.data });
       setIsLoading(false);
     };

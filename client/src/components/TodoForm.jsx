@@ -24,7 +24,9 @@ const TodoForm = () => {
       content,
     };
 
-    const res = await axios.post(URL, newTodo);
+    const res = await axios.post(URL, newTodo, {
+      withCredentials: true,
+    });
     dispatch({ type: 'post', payload: res.data });
 
     setContent('');
