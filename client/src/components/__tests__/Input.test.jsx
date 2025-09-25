@@ -6,7 +6,7 @@ import { Input } from '../Input';
 describe('Inputコンポーネントの正常性確認', () => {
   describe('input要素とtype属性の確認', () => {
     test('input要素が存在し、type属性がtextかどうか', () => {
-      render(<Input type="text" />);
+      render(<Input type="text" placeholderText="ToDoを入力してください" />);
       const input = screen.getByPlaceholderText('ToDoを入力してください');
       expect(input).toBeInTheDocument();
       expect(input).toHaveAttribute('type', 'text');
