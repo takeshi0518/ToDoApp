@@ -5,9 +5,11 @@ import { SubTitle } from './SubTitle';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { SpinnerIcon } from './SpinnerIcon';
+import { useAuthContext } from '../context/AuthContext';
 
 export const Login = () => {
   const navigate = useNavigate();
+  const { login } = useAuthContext();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +21,7 @@ export const Login = () => {
     setIsLoading(true);
 
     try {
-      await axios.post(
+      const response = await axios.post(
         `/api/auth/login`,
         {
           username,
@@ -29,6 +31,8 @@ export const Login = () => {
           withCredentials: true,
         }
       );
+
+      login(response.data);
       navigate('/todos');
     } catch (error) {
       setIsLoading(false);
