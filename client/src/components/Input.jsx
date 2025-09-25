@@ -7,6 +7,7 @@ const Input = ({
   value,
   defaultValue,
   ref,
+  
   type,
 }) => {
   return (
