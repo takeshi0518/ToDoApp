@@ -11,7 +11,7 @@ export const PrivateRoute = ({ children }) => {
       <div className="min-h-screen flex items-center justify-center">
         <div className="flex items-center">
           <SpinnerIcon className="animate-spin mr-5" />
-          <p className="text-2xl">読込中....</p>
+          <p className="text-2xl">Loading....</p>
         </div>
       </div>
     );

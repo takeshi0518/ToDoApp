@@ -80,7 +80,7 @@ export const Login = () => {
                   <SpinnerIcon className="animate-spin " />
                 </div>
               ) : (
-                'ログイン'
+                'login'
               )
             }
             disabled={isLoading}
