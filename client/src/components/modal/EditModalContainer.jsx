@@ -24,7 +24,9 @@ const EditModalContainer = memo(({ todo, closeEditModal }) => {
       content: editContent,
     };
 
-    await axios.patch(`${URL}/${todo._id}`, editTodo);
+    await axios.patch(`${URL}/${todo._id}`, editTodo, {
+      withCredentials: true,
+    });
     dispatch({ type: 'patch', payload: editTodo });
     closeEditModal();
   };

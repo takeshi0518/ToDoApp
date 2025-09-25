@@ -7,20 +7,27 @@ import {
   updateTodo,
   getAllTodos,
   deleteTodo,
-} from '../controllers/books.mjs';
+} from '../controllers/todos.mjs';
+import { requireLogin } from '../helpers/auth.mjs';
 
 const router = express.Router();
 
-router.get('/', requestErrorHandler(getAllTodos));
+router.get('/', requireLogin, requestErrorHandler(getAllTodos));
 
-router.post('/', body('content').notEmpty(), requestErrorHandler(registTodo));
+router.post(
+  '/',
+  requireLogin,
+  body('content').notEmpty(),
+  requestErrorHandler(registTodo)
+);
 
 router.patch(
   '/:id',
+  requireLogin,
   body('content').notEmpty(),
   requestErrorHandler(updateTodo)
 );
 
-router.delete('/:id', requestErrorHandler(deleteTodo));
+router.delete('/:id', requireLogin, requestErrorHandler(deleteTodo));
 
 export default router;

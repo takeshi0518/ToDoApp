@@ -24,7 +24,9 @@ const TodoForm = () => {
       content,
     };
 
-    const res = await axios.post(URL, newTodo);
+    const res = await axios.post(URL, newTodo, {
+      withCredentials: true,
+    });
     dispatch({ type: 'post', payload: res.data });
 
     setContent('');
@@ -52,6 +54,7 @@ const TodoForm = () => {
           onChange={(e) => setContent(e.target.value)}
           value={content}
           type="text"
+          placeholderText="Todoを入力してください"
         />
         <Button text="送信" variant="grayLarge" type="submit" />
       </form>

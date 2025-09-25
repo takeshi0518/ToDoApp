@@ -16,7 +16,9 @@ const CardList = () => {
   const [targetTodo, setTargetTodo] = useState(null);
 
   const handleComplete = async (id) => {
-    await axios.delete(`${URL}/${id}`);
+    await axios.delete(`${URL}/${id}`, {
+      withCredentials: true,
+    });
     dispatch({ type: 'delete', payload: id });
   };
 
