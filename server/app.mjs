@@ -29,6 +29,7 @@ app.use(express.json());
 app.use(
   session({
     secret: process.env.SESSION_SECRET || 'dev-secret-key',
+    proxy: true,
     resave: false,
     saveUninitialized: false,
     cookie: {
