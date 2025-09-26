@@ -17,10 +17,12 @@ const PORT = process.env.PORT || 8000;
 
 const app = express();
 
+const isDevelopment = process.env.NODE_ENV !== 'production';
 app.use(
   cors({
-    // origin: 'http://localhost:5173',
-    origin: 'https://todoapp-apl5.onrender.com',
+    origin: isDevelopment
+      ? 'http://localhost:5173'
+      : 'https://todoapp-apl5.onrender.com',
     credentials: true,
   })
 );
@@ -29,13 +31,13 @@ app.use(express.json());
 app.use(
   session({
     secret: process.env.SESSION_SECRET || 'dev-secret-key',
-    proxy: true,
+    proxy: !isDevelopment,
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: process.env.NODE_ENV === 'production',
+      secure: !isDevelopment,
       httpOnly: true,
-      sameSite: 'none',
+      sameSite: isDevelopment ? 'lax' : 'none',
       maxAge: 1000 * 60 * 60 * 24,
     },
   })

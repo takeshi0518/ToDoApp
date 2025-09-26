@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node app.mjs",
+    "dev": "NODE_ENV=development node app.mjs",
     "build-client": "cd ../client && npm install && npm run build && cp -r dist ../server/public"
   },
   "keywords": [],
