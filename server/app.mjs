@@ -20,7 +20,7 @@ const app = express();
 const isDevelopment = process.env.NODE_ENV !== 'production';
 app.use(
   cors({
-    origin: !isDevelopment
+    origin: isDevelopment
       ? 'http://localhost:5173'
       : 'https://todoapp-apl5.onrender.com',
     credentials: true,
