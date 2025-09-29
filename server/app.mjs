@@ -18,6 +18,7 @@ const PORT = process.env.PORT || 8000;
 const app = express();
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
+console.log(isDevelopment);
 app.use(
   cors({
     origin: isDevelopment
