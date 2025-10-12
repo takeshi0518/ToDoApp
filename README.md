@@ -1,22 +1,56 @@
 # アプリの概要
 
-このアプリは MERN スタック(MongoDB, Express, React, Node.js)を使用構築したシンプルな ToDo 管理アプリです。
-タスクの追加・編集・削除・完了マークなど、基本的なタスク管理機能を備えています。
+このアプリは MERN スタック(MongoDB, Express, React, Node.js)を使用して構築した、ユーザー認証機能付きの ToDo 管理アプリです。
+ユーザーごとに独立したタスク管理が可能。セキュアなセッション管理により安全にデータを保護します。
 
-## 仕様技術
+## 使用技術
 
-- フロントエンド:React(vite)
-- バックエンド:Node.js + Express
-- データベース:MongoDB Atlas
-- デプロイ:Render
+### フロントエンド
+
+- React (Vite)
+- React Router
+- Context API (認証状態管理)
+- Tailwind CSS
+- Axios
+
+### バックエンド
+
+- Node.js + Express
+- MongoDB Atlas
+- Mongoose
+- bcrypt (パスワードハッシュ化)
+- express-session (セッション管理)
+
+### デプロイ・インフラ
+
+- Render
 
 ## 主な機能
 
+### 認証機能
+
+- ユーザー登録・ログイン・ログアウト
+- セッションベースの認証
+- パスワードのハッシュ化（bcrypt）
+- 保護されたルート（PrivateRoute）
+- Cookie 設定（httpOnly、secure、sameSite）
+
+### ToDo 管理機能
+
 - タスクの新規追加
-- タスクの一覧表示
+- タスクの一覧表示（ユーザーごとに表示）
 - タスクの編集・削除
 - タスク完了・未完了切り替え
-- バリデーション(空欄禁止、文字制限)
+- バリデーション（空欄禁止、文字制限）
+
+## セキュリティ機能
+
+- パスワードのハッシュ化（bcrypt）
+- セッションベース認証
+- HttpOnly Cookie（XSS 対策）
+- HTTPS 通信（secure Cookie）
+- CSRF 対策（sameSite 属性）
+- ユーザーごとのデータ分離
 
 ## ワイヤーフレーム
 
@@ -28,31 +62,58 @@
 
 ## API 仕様
 
-### GET `/api/todos`
+### 認証エンドポイント
 
-- 目的: 登録されている ToDo リストを取得する
-- 使い方: ブラウザやクライアントからアクセスする
+#### POST `/api/auth/register`
 
-### POST `/api/todos`
+- 目的: 新規ユーザー登録
+- リクエストボディ: `{ username, password }`
+- レスポンス: `{ username }`
 
-- 目的: 新しい ToDo を追加する
-- 使い方: title をリクエストボディに入れて送信する
+#### POST `/api/auth/login`
 
-### PATCH `/api/todos/:id`
+- 目的: ログイン
+- リクエストボディ: `{ username, password }`
+- レスポンス: `{ username }`
 
-- 目的: 指定した ID の ToDo を更新する
-- 使い方: title を変更して送信
+#### POST `/api/auth/logout`
 
-### DELETE `/api/todos:id`
+- 目的: ログアウト
+- レスポンス: `{ message }`
 
-- 目的: 指定した ID の ToDo を削除する
-- 使い方: その ID に対してリクエストを送信
+#### GET `/api/auth/me`
+
+- 目的: 現在のユーザー情報取得
+- レスポンス: `{ user: { username, id } }`
+
+### ToDo エンドポイント（要認証）
+
+#### GET `/api/todos`
+
+- 目的: ログインユーザーの ToDo リストを取得
+- 認証: 必須
+
+#### POST `/api/todos`
+
+- 目的: 新しい ToDo を追加
+- リクエストボディ: `{ content }`
+- 認証: 必須
+
+#### PATCH `/api/todos/:id`
+
+- 目的: 指定した ID の ToDo を更新
+- リクエストボディ: `{ content }`
+- 認証: 必須（自分の Todo のみ）
+
+#### DELETE `/api/todos/:id`
+
+- 目的: 指定した ID の ToDo を削除
+- 認証: 必須（自分の Todo のみ）
 
 ## CI/CD
 
 このアプリは以下のタスクを GitHub Actions によって自動化しています。
 
-- ESLint による静的コード解析 `npm run lint`
 - テストの自動実行 `npm test`
 - main ブランチにマージされた際に Render に自動デプロイ
 
@@ -63,27 +124,39 @@
 ### 1. リポジトリをクローン
 
 git clone https://github.com/takeshi0518/ToDoApp.git
+$cd ToDoApp
 
-### 2. クライアントフォルダに移動してビルド
+### 2. サーバー環境変数の設定
 
-$cd client
-
-.env ファイルを作成し、以下を追加してください
-VITE_API_URL=http://localhost:8080/api/todos
-
-$npm install  
-$npm run build
-
-### 3. サーバーフォルダに移動して localhost:8080 にアクセス
-
-$cd ../server
-
-.env ファイルを作成し、以下を追加してください
-MONGO_URI=your_mongo_connection_string  
+server/.env ファイルを作成し、以下を追加
+MONGO_URI=your_mongo_connection_string
+SESSION_SECRET=your_random_secret_key
 PORT=8080
 
-$npm install  
-$npm run start
+### 3. クライアント環境変数の設定
+
+client/.env ファイルを作成し、以下を追加：
+VITE_API_URL=http://localhost:8080/api
+
+### 4.サーバー起動
+
+$cd server
+$npm install
+$npm run dev
+
+### 5. クライアント起動(別ターミナル)
+
+$cd client
+$npm install
+$npm run dev
+ブラウザで http://localhost:5173 にアクセス
+
+### 本番環境の環境変数
+
+Render.com で以下の環境変数を設定してください：
+MONGO_URI=your_mongo_connection_string
+SESSION_SECRET=your_random_secret_key
+注意: NODE_ENV は環境変数として設定せず、package.json の start スクリプトで設定されます。
 
 ## Git 運用メモ
 
@@ -101,3 +174,10 @@ $npm run start
 - `feat: ユーザー登録機能を追加`
 - `fix: ログイン処理でクラッシュするバグを修正`
 - `docs: READMEにAPI仕様を追記`
+
+## 今後の実装予定
+
+- アカウント情報の編集機能
+- アカウント削除機能
+- パスワードリセット機能
+- JWT 認証への移行を検討中
