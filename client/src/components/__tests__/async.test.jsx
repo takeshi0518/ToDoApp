@@ -1,12 +1,27 @@
 import axios from 'axios';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
 
 import { TodoForm } from '../TodoForm';
 import { CardList } from '../ToDoCard/CardList';
 import { TodoProvider } from '../../context/TodoContext';
+import { AuthContext } from '../../context/AuthContext';
 
 vi.mock('axios');
+
+const mockAuthContext = {
+  user: { username: 'test-user', id: '123' },
+  loding: false,
+};
+
+const renderWithAuth = (component) => {
+  return render(
+    <AuthContext.Provider vallue={mockAuthContext}>
+      {component}
+    </AuthContext.Provider>
+  );
+};
 
 describe('非同期関数の動作確認', () => {
   test('get: 初期表示されるか', async () => {
@@ -15,9 +30,9 @@ describe('非同期関数の動作確認', () => {
       { _id: '2', content: '初期タスクB' },
     ];
 
-    axios.get.mockResolvedValue({ data: mockTodos });
+    axios.get = vi.fn().mockResolvedValue({ data: mockTodos });
 
-    render(
+    renderWithAuth(
       <TodoProvider>
         <TodoForm />
         <CardList />
@@ -30,38 +45,39 @@ describe('非同期関数の動作確認', () => {
     });
   });
 
-  describe.skip('Todo機能のテスト（認証機能実装後に修正予定）', () => {
-    test('post: タスクが追加されるか', async () => {
-      const addTodo = { _id: '3', content: '追加タスク' };
-      axios.post.mockResolvedValue({ data: addTodo });
+  test('post: タスクが追加されるか', async () => {
+    const mockTodos = [];
+    const addTodo = { _id: '3', content: '追加タスク' };
 
-      render(
-        <TodoProvider>
-          <TodoForm />
-          <CardList />
-        </TodoProvider>
-      );
+    axios.get = vi.fn().mockResolvedValue({ data: mockTodos });
+    axios.post = vi.fn().mockResolvedValue({ data: addTodo });
 
-      const input = screen.getByPlaceholderText('ToDoを入力してください');
-      const button = screen.getByText('送信');
+    render(
+      <TodoProvider>
+        <TodoForm />
+        <CardList />
+      </TodoProvider>
+    );
 
-      await userEvent.type(input, '追加タスク');
-      userEvent.click(button);
+    const input = screen.getByPlaceholderText('Todoを入力してください');
+    const button = screen.getByText('送信');
 
-      await waitFor(() => {
-        expect(screen.getByText('追加タスク')).toBeInTheDocument();
-      });
+    await userEvent.type(input, '追加タスク');
+    await userEvent.click(button);
+
+    await waitFor(() => {
+      expect(screen.getByText('追加タスク')).toBeInTheDocument();
     });
   });
 
   test('delete: タスクが削除されるか', async () => {
-    axios.get.mockResolvedValue({
+    axios.get = vi.fn().mockResolvedValue({
       data: [{ _id: '1', content: '削除対象タスク' }],
     });
 
-    axios.delete.mockResolvedValue('1');
+    axios.delete = vi.fn().mockResolvedValue({ data: 1 });
 
-    render(
+    renderWithAuth(
       <TodoProvider>
         <TodoForm />
         <CardList />
@@ -81,15 +97,15 @@ describe('非同期関数の動作確認', () => {
     target.setAttribute('id', 'modal-hook');
     document.body.appendChild(target);
 
-    axios.get.mockResolvedValue({
+    axios.get = vi.fn().mockResolvedValue({
       data: [{ _id: '1', content: '編集前のタスク' }],
     });
 
-    axios.patch.mockResolvedValue({
+    axios.patch = vi.fn().mockResolvedValue({
       data: { _id: '1', content: '編集後のタスク' },
     });
 
-    render(
+    renderWithAuth(
       <TodoProvider>
         <TodoForm />
         <CardList />
