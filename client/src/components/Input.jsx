@@ -8,6 +8,7 @@ const Input = ({
   defaultValue,
   ref,
   type,
+  testId,
 }) => {
   return (
     <>
@@ -22,6 +23,7 @@ const Input = ({
         onChange={onChange}
         ref={ref}
         placeholder={placeholderText}
+        data-testid={testId}
       />
     </>
   );
