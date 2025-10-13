@@ -181,7 +181,7 @@ PORT=8080
 ### 3. クライアント環境変数の設定
 
 client/.env ファイルを作成し、以下を追加  
-VITE_API_URL=http://localhost:8080/api
+VITE_API_URL=http://localhost:8080/api/todos
 
 ### 4.サーバー起動
 
@@ -194,7 +194,7 @@ $ npm run dev
 $ cd client  
 $ npm install  
 $ npm run dev  
-ブラウザで http://localhost:5173 にアクセス  
+ブラウザで http://localhost:5173 にアクセス
 
 ### 本番環境の環境変数
 
