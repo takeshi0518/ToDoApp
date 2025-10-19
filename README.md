@@ -168,40 +168,64 @@ MERN スタックとユーザー認証機能を学ぶために開発したタス
 
 ### 1. リポジトリをクローン
 
-$ git clone https://github.com/takeshi0518/ToDoApp.git  
+```bash
+
+$ git clone https://github.com/takeshi0518/ToDoApp.git
 $ cd ToDoApp
+
+```
 
 ### 2. サーバー環境変数の設定
 
-server/.env ファイルを作成し、以下を追加  
-MONGO_URI=your_mongo_connection_string  
-SESSION_SECRET=your_random_secret_key  
+```bash
+
+server/.env ファイルを作成し、以下を追加
+MONGO_URI=your_mongo_connection_string
+SESSION_SECRET=your_random_secret_key
 PORT=8080
+
+```
 
 ### 3. クライアント環境変数の設定
 
-client/.env ファイルを作成し、以下を追加  
+```bash
+
+client/.env ファイルを作成し、以下を追加
 VITE_API_URL=http://localhost:8080/api/todos
 
+```
+
 ### 4.サーバー起動
+
+```bash
 
 $ cd server  
 $ npm install  
 $ npm run dev
 
+```
+
 ### 5. クライアント起動(別ターミナル)
+
+```bash
 
 $ cd client  
 $ npm install  
 $ npm run dev  
 ブラウザで http://localhost:5173 にアクセス
 
+```
+
 ### 本番環境の環境変数
+
+```bash
 
 Render.com で以下の環境変数を設定してください  
 MONGO_URI=your_mongo_connection_string  
 SESSION_SECRET=your_random_secret_key  
 注意: NODE_ENV は環境変数として設定せず、package.json の start スクリプトで設定されます。
+
+```
 
 ## Git 運用メモ
 
